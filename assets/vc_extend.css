@@ -1,8 +1,9 @@
 .seo-audit {
   text-align: center;
-  width: 500px;
+  width: 100%;
+  min-width: 320px
   margin: 0 auto;
-  background: white;
+  color: white;
   padding: 30px 15px;
 }
 
@@ -17,6 +18,12 @@
   opacity: 0;
   z-index: -1;
   
+}
+
+.scoreAudit{
+  font-size: 100px;
+  font-weight: bold;
+  display: none;
 }
 
 
@@ -43,14 +50,14 @@
   display: block;
   font-size: 13px;
   text-transform: uppercase;
-  background-color: #ff4f58;
+  background-color: #f7be68;
   color: white;
   font-weight: bold;
   text-decoration: none;
   padding: 20px;
 }
 .seo-audit a.sendQuery:hover{
-  background-color: #207fe2;
+  background-color: #f79500;
 }
 
 .seo-audit .tab-label {
@@ -122,9 +129,22 @@
 
 
 
-.message{
+.seo-audit .message{
   display: none;
   text-align: center;
+
+  padding: 20px 0;
+}
+
+.seo-audit .message h3{
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 20px 0;
+}
+
+.seo-audit .message p{
+  font-size: 15px;
+  margin: 0;
 }
 
 

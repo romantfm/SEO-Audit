@@ -81,7 +81,11 @@ class VCExtendAddonClass {
 
       <div class="seo-audit">
 
-      <h2>SEO Audit</h2>
+      <h2>Online SEO Audit</h2>
+
+        <div class="scoreAudit">
+          91
+        </div>
 
         <form action="#">
           <input type="text" id="email_seo" name="email_seo" value="123@123.com" placeholder="Email">
@@ -90,11 +94,14 @@ class VCExtendAddonClass {
         </form>
 
         <div class="message">
-          <div class="spinner-box">
+          <!--div class="spinner-box">
             <div class="circle-border">
               <div class="circle-core"></div>
             </div>
-          </div>
+          </div-->
+          <h3>Calculating your SEO score... </h3>
+          <p>Tip: Did you know that we use Google's lighthouse to assess your webpage</p>
+
         </div>
 
         <div class="tabset">
@@ -153,9 +160,11 @@ class VCExtendAddonClass {
             method: "POST",
             body: mutation
           }).then((res) => res.json()).then(data => {
-            //console.log(data);
-            console.log(data.data.checkSEO.failed);
-            console.log(data.data.checkSEO.passed);
+            console.log(data);
+            //console.log(data.data.checkSEO.failed);
+            //console.log(data.data.checkSEO.passed);
+
+            jQuery('.scoreAudit').text(data.data.checkSEO.score);
 
             var failed_acc='';
             jQuery.each(data.data.checkSEO.failed, function(i, item) {
@@ -172,7 +181,9 @@ class VCExtendAddonClass {
             jQuery('.seo-audit .passed .tabs').html(passed_acc);
 
             jQuery('.seo-audit .message').fadeOut('fast', function(){
-              jQuery('.seo-audit .tabset').fadeIn('fast');
+              jQuery('.seo-audit .tabset').fadeIn('fast', function(){
+                jQuery('.seo-audit .scoreAudit').fadeIn('fast');
+              });
             });
             
 
