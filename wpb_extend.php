@@ -12,7 +12,7 @@ License: GPLv2 or later
 // don't load directly
 if (!defined('ABSPATH')) die('-1');
 
-class VCExtendAddonClass {
+class SEOAuditClass {
     function __construct() {
         // We safely integrate with VC with this hook
         add_action( 'init', array( $this, 'integrateWithVC' ) );
@@ -252,4 +252,4 @@ class VCExtendAddonClass {
     }
 }
 // Finally initialize code
-new VCExtendAddonClass();
+new SEOAuditClass();
