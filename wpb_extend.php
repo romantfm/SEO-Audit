@@ -139,10 +139,10 @@ class SEOAuditClass {
     Load plugin css and javascript files which you may need on front end of your site
     */
     public function loadCssAndJs() {
-      wp_register_style( 'vc_extend_style', plugins_url('assets/vc_extend.css', __FILE__) );
-      wp_enqueue_style( 'vc_extend_style' );    
+      wp_register_style( 'seo_audit_style', plugins_url('assets/vc_extend.css', __FILE__) );
+      wp_enqueue_style( 'seo_audit_style' );    
 
-      wp_enqueue_script( 'vc_extend_js', plugins_url('assets/vc_extend.js', __FILE__), array('jquery') );
+      wp_enqueue_script( 'seo_audit_js', plugins_url('assets/vc_extend.js', __FILE__), array('jquery') );
     }
 
     public function showAll($atts) {
