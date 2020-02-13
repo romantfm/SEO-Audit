@@ -70,10 +70,8 @@ class SEOAuditClass {
 
       //wp_enqueue_script( 'vc_extend_js', plugins_url('assets/jquery-3.4.1.min.js', __FILE__), array('jquery') );
       //echo plugin_dir_path(__DIR__) ;
-      echo '<script src="' . plugin_dir_url( __FILE__ ) . 'assets/jquery-3.4.1.min.js' . '"></script>';
-      echo '<style href="' . plugin_dir_url( __FILE__ ) . 'assets/vc_extend.css' . '"></style>';
-      echo '<style href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></style>';
-      echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>';
+      //echo '<script src="' . plugin_dir_url( __FILE__ ) . 'assets/jquery-3.4.1.min.js' . '"></script>';
+      //echo '<style href="' . plugin_dir_url( __FILE__ ) . 'assets/vc_extend.css' . '"></style>';
 
       $the_url = ${url_seo};
 
@@ -129,92 +127,8 @@ class SEOAuditClass {
 
       </div>
 
-<script type="text/javascript">
-      var jq = $.noConflict();
-      jq( document ).ready(function() {
-      
-        const SEOCHeck = (email, domain) => {
-
-          const mutation = JSON.stringify({
-            operationName: "checkSEO",
-            variables: { email: email, url: domain },
-            query: `mutation checkSEO ($email: String! $url: String!) { checkSEO (
-                          email: $email
-                          url: $url
-                        ){
-                          score
-                          failed{
-                            title
-                            description
-                            score
-                          }
-                            passed{
-                            title
-                            description
-                            score
-                          }
-                      }}`
-          })
-        
-          fetch("<?php echo $the_url; ?>", {
-            headers: { "content-type": "application/json" },
-            method: "POST",
-            body: mutation
-          }).then((res) => res.json()).then(data => {
-            console.log(data);
-            //console.log(data.data.checkSEO.failed);
-            //console.log(data.data.checkSEO.passed);
-
-            jq('.scoreAudit').text(data.data.checkSEO.score);
-
-            var failed_acc='';
-            jq.each(data.data.checkSEO.failed, function(i, item) {
-              //console.log(item);
-              failed_acc = failed_acc + '<div class="tab"><input type="checkbox" id="failed_' + i + '"><label class="tab-label" for="failed_' + i + '">' + htmlEntities(item.title) + '</label><div class="tab-content">' + htmlEntities(item.description) + '</div></div>';
-            });
-            jq('.seo-audit .failed .tabs').html(failed_acc);
-
-            var passed_acc='';
-            jq.each(data.data.checkSEO.passed, function(i, item) {
-              //console.log(item);
-              passed_acc = passed_acc + '<div class="tab"><input type="checkbox" id="passed_' + i + '"><label class="tab-label" for="passed_' + i + '">' + htmlEntities(item.title) + '</label><div class="tab-content">' + htmlEntities(item.description) + '</div></div>';
-            });
-            jq('.seo-audit .passed .tabs').html(passed_acc);
-
-            jq('.seo-audit .message').fadeOut('fast', function(){
-              jq('.seo-audit .tabset').fadeIn('fast', function(){
-                jq('.seo-audit .scoreAudit').fadeIn('fast');
-              });
-            });
-            
-
-          }).catch(err => console.log(err))
-        }
-
-        jq("body").on("click", ".sendQuery", function(e){
-          e.preventDefault();
-          jq('.seo-audit form').fadeOut('slow', function(){
-            jq('.message').fadeIn('fast');
-          });
-          SEOCHeck( jq("#email_seo").val() , jq("#link_seo").val() );
-        } );
-
-        function htmlEntities(str) {
-            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-        }
-        
-      
-      });
-
-      function toggleIcon(e) {
-        jq(e.target)
-                .prev(".panel-heading")
-                .find(".more-less")
-                .toggleClass("glyphicon-plus glyphicon-minus");
-        }
-        jq(".panel-group").on("hidden.bs.collapse", toggleIcon);
-        jq(".panel-group").on("shown.bs.collapse", toggleIcon);
-
+      <script type="text/javascript">
+        var the_url = "<?php echo $the_url; ?>";
       </script>
 
       <?php
@@ -227,6 +141,8 @@ class SEOAuditClass {
     public function loadCssAndJs() {
       wp_register_style( 'vc_extend_style', plugins_url('assets/vc_extend.css', __FILE__) );
       wp_enqueue_style( 'vc_extend_style' );    
+
+      wp_enqueue_script( 'vc_extend_js', plugins_url('assets/vc_extend.js', __FILE__), array('jquery') );
     }
 
     public function showAll($atts) {
