@@ -130,7 +130,8 @@ class SEOAuditClass {
       </div>
 
 <script type="text/javascript">
-      $( document ).ready(function() {
+      var jq = $.noConflict();
+      jq( document ).ready(function() {
       
         const SEOCHeck = (email, domain) => {
 
@@ -164,25 +165,25 @@ class SEOAuditClass {
             //console.log(data.data.checkSEO.failed);
             //console.log(data.data.checkSEO.passed);
 
-            jQuery('.scoreAudit').text(data.data.checkSEO.score);
+            jq('.scoreAudit').text(data.data.checkSEO.score);
 
             var failed_acc='';
-            jQuery.each(data.data.checkSEO.failed, function(i, item) {
+            jq.each(data.data.checkSEO.failed, function(i, item) {
               //console.log(item);
               failed_acc = failed_acc + '<div class="tab"><input type="checkbox" id="failed_' + i + '"><label class="tab-label" for="failed_' + i + '">' + htmlEntities(item.title) + '</label><div class="tab-content">' + htmlEntities(item.description) + '</div></div>';
             });
-            jQuery('.seo-audit .failed .tabs').html(failed_acc);
+            jq('.seo-audit .failed .tabs').html(failed_acc);
 
             var passed_acc='';
-            jQuery.each(data.data.checkSEO.passed, function(i, item) {
+            jq.each(data.data.checkSEO.passed, function(i, item) {
               //console.log(item);
               passed_acc = passed_acc + '<div class="tab"><input type="checkbox" id="passed_' + i + '"><label class="tab-label" for="passed_' + i + '">' + htmlEntities(item.title) + '</label><div class="tab-content">' + htmlEntities(item.description) + '</div></div>';
             });
-            jQuery('.seo-audit .passed .tabs').html(passed_acc);
+            jq('.seo-audit .passed .tabs').html(passed_acc);
 
-            jQuery('.seo-audit .message').fadeOut('fast', function(){
-              jQuery('.seo-audit .tabset').fadeIn('fast', function(){
-                jQuery('.seo-audit .scoreAudit').fadeIn('fast');
+            jq('.seo-audit .message').fadeOut('fast', function(){
+              jq('.seo-audit .tabset').fadeIn('fast', function(){
+                jq('.seo-audit .scoreAudit').fadeIn('fast');
               });
             });
             
@@ -190,12 +191,12 @@ class SEOAuditClass {
           }).catch(err => console.log(err))
         }
 
-        jQuery("body").on("click", ".sendQuery", function(e){
+        jq("body").on("click", ".sendQuery", function(e){
           e.preventDefault();
-          jQuery('.seo-audit form').fadeOut('slow', function(){
-            jQuery('.message').fadeIn('fast');
+          jq('.seo-audit form').fadeOut('slow', function(){
+            jq('.message').fadeIn('fast');
           });
-          SEOCHeck( jQuery("#email_seo").val() , jQuery("#link_seo").val() );
+          SEOCHeck( jq("#email_seo").val() , jq("#link_seo").val() );
         } );
 
         function htmlEntities(str) {
@@ -206,13 +207,13 @@ class SEOAuditClass {
       });
 
       function toggleIcon(e) {
-        jQuery(e.target)
+        jq(e.target)
                 .prev(".panel-heading")
                 .find(".more-less")
                 .toggleClass("glyphicon-plus glyphicon-minus");
         }
-        jQuery(".panel-group").on("hidden.bs.collapse", toggleIcon);
-        jQuery(".panel-group").on("shown.bs.collapse", toggleIcon);
+        jq(".panel-group").on("hidden.bs.collapse", toggleIcon);
+        jq(".panel-group").on("shown.bs.collapse", toggleIcon);
 
       </script>
 
