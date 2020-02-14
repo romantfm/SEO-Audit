@@ -58,13 +58,15 @@ jQuery( document ).ready(function() {
           }).catch(err => console.log(err))
         }
 
-        jQuery("body").on("click", ".sendQuery", function(e){
-          e.preventDefault();
-          jQuery('.seo-audit form').fadeOut('slow', function(){
-            jQuery('.message').fadeIn('fast');
-          });
-          SEOCHeck( jQuery("#email_seo").val() , jQuery("#link_seo").val() );
-        } );
+
+        jQuery('body').on('submit','.seo-audit form',function(e){
+           e.preventDefault();
+
+           jQuery('.seo-audit form').fadeOut('slow', function(){
+              jQuery('.message').fadeIn('fast');
+            });
+            SEOCHeck( jQuery("#email_seo").val() , jQuery("#link_seo").val() );
+        });
 
         function htmlEntities(str) {
             return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

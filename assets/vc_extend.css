@@ -1,7 +1,7 @@
 .seo-audit {
   text-align: center;
   width: 100%;
-  min-width: 320px
+  min-width: 320px;
   margin: 0 auto;
   color: white;
   padding: 30px 15px;
@@ -11,6 +11,8 @@
   text-align: center;
   font-size: 24px;
   margin: 0 0 20px 0;
+  display: block;
+  color: white;
 }
 
 .seo-audit .tab input {
@@ -24,10 +26,14 @@
   font-size: 100px;
   font-weight: bold;
   display: none;
+  line-height: 100px;
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 
-.seo-audit input[type="text"]{
+.seo-audit input[type="url"],
+.seo-audit input[type="email"]{
   margin-bottom: 15px;
   border: 1px solid #cccccc;
   background-color: white;
@@ -45,7 +51,8 @@
   position: relative;
 }
 
-.seo-audit a.sendQuery {
+.seo-audit a.sendQuery, 
+.seo-audit input[type="submit"]{
   width: 100%;
   display: block;
   font-size: 13px;
@@ -56,7 +63,8 @@
   text-decoration: none;
   padding: 20px;
 }
-.seo-audit a.sendQuery:hover{
+.seo-audit a.sendQuery:hover,
+.seo-audit input[type="submit"]:hover{
   background-color: #f79500;
 }
 
@@ -140,39 +148,41 @@
   font-size: 24px;
   font-weight: bold;
   margin: 0 0 20px 0;
+  color: white;
 }
 
 .seo-audit .message p{
   font-size: 15px;
   margin: 0;
+  color: white;
 }
 
 
 
-.tabset{
+.seo-audit .tabset{
   display: none;
 }
 
-.tabset > input[type="radio"] {
+.seo-audit .tabset > input[type="radio"] {
   position: absolute;
   left: -200vw;
 }
 
-.tabset .tab-panel {
+.seo-audit .tabset .tab-panel {
   display: none;
   background: #f3f3f3;
 }
 
-.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
-.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
-.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
-.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
-.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
-.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+.seo-audit .tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+.seo-audit .tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+.seo-audit .tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+.seo-audit .tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+.seo-audit .tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+.seo-audit .tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
   display: block;
 }
 
-.tabset > label {
+.seo-audit .tabset > label {
   position: relative;
   display: inline-block;
   padding: 15px 15px 25px;
@@ -183,7 +193,7 @@
   margin: 0;
 }
 
-.tabset > label::after {
+.seo-audit .tabset > label::after {
   content: "";
   position: absolute;
   left: 15px;
@@ -193,18 +203,18 @@
   background: #8d8d8d;
 }
 
-.tabset > label:hover,
-.tabset > input:focus + label {
+.seo-audit .tabset > label:hover,
+.seo-audit .tabset > input:focus + label {
   color: #207fe2;
 }
 
-.tabset > label:hover::after,
-.tabset > input:focus + label::after,
-.tabset > input:checked + label::after {
+.seo-audit .tabset > label:hover::after,
+.seo-audit .tabset > input:focus + label::after,
+.seo-audit .tabset > input:checked + label::after {
   background: #207fe2;
 }
 
-.tabset > input:checked + label {
+.seo-audit .tabset > input:checked + label {
   border-color: #ccc;
   border-bottom: 1px solid #f3f3f3;
   margin-bottom: -1px;
@@ -212,7 +222,7 @@
   color: #207fe2;
 }
 
-.tab-panel {
+.seo-audit .tab-panel {
   padding: 20px;
   border: 1px solid #ccc;
 }
