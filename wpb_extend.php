@@ -86,8 +86,8 @@ class SEOAuditClass {
         </div>
 
         <form action="#">
-          <input type="email" id="email_seo" name="email_seo" required="" placeholder="Email">
-          <input type="url" id="link_seo" name="link_seo" required="" placeholder="Url">
+          <input type="email" id="email_seo" name="email_seo" required="" placeholder="your@email.com">
+          <input type="url" id="link_seo" name="link_seo" placeholder="wwww.yourdomain.com">
           <!--a href="#" class="sendQuery">Send</a-->
           <input type="submit" value="Send">
         </form>
