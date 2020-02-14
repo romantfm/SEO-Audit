@@ -32,30 +32,66 @@ jQuery( document ).ready(function() {
             //console.log(data.data.checkSEO.failed);
             //console.log(data.data.checkSEO.passed);
 
-            jQuery('.scoreAudit').text(data.data.checkSEO.score);
+            if( data.errors ){
+              setTimeout(() => {
+                jQuery('.seo-audit .message').fadeOut('slow', function(){
+                  jQuery('.seo-audit form').fadeIn('slow', function(){
+                    showMessage(data.errors[0].message);
+                  });
+                });
+              }, 1000);
+            }else{
 
-            var failed_acc='';
-            jQuery.each(data.data.checkSEO.failed, function(i, item) {
-              //console.log(item);
-              failed_acc = failed_acc + '<div class="tab"><label class="tab-label" for="failed_' + i + '">'+ '• ' + htmlEntities(item.title) + '</label></div>';
-            });
-            jQuery('.seo-audit .failed .tabs').html(failed_acc);
+              if( !data.data.checkSEO.failed && !data.data.checkSEO.passed ){
+                  setTimeout(() => {
+                    jQuery('.seo-audit .message').fadeOut('slow', function(){
+                      jQuery('.seo-audit form').fadeIn('slow', function(){
+                        showMessage('No results.');
+                      });
+                    });
+                  }, 1000);
+              }else{
 
-            var passed_acc='';
-            jQuery.each(data.data.checkSEO.passed, function(i, item) {
-              //console.log(item);
-              passed_acc = passed_acc + '<div class="tab"><label class="tab-label" for="passed_' + i + '">'+ '• ' + htmlEntities(item.title) + '</label></div>';
-            });
-            jQuery('.seo-audit .passed .tabs').html(passed_acc);
+                  jQuery('.scoreAudit').text(data.data.checkSEO.score);
 
-            jQuery('.seo-audit .message').fadeOut('slow', function(){
-              jQuery('.seo-audit .tabset').fadeIn('slow', function(){
-                jQuery('.seo-audit .scoreAudit').fadeIn('slow');
-              });
-            });
+                  if( data.data.checkSEO.failed ){
+                    var failed_acc='';
+                    jQuery.each(data.data.checkSEO.failed, function(i, item) {
+                      //console.log(item);
+                      failed_acc = failed_acc + '<div class="tab"><label class="tab-label" for="failed_' + i + '">'+ '• ' + htmlEntities(item.title) + '</label></div>';
+                    });
+                    jQuery('.seo-audit .failed .tabs').html(failed_acc);
+                  }
+
+                  if( data.data.checkSEO.passed ){
+                    var passed_acc='';
+                    jQuery.each(data.data.checkSEO.passed, function(i, item) {
+                      //console.log(item);
+                      passed_acc = passed_acc + '<div class="tab"><label class="tab-label" for="passed_' + i + '">'+ '• ' + htmlEntities(item.title) + '</label></div>';
+                    });
+                    jQuery('.seo-audit .passed .tabs').html(passed_acc);
+                  }
+
+                  jQuery('.seo-audit .message').fadeOut('slow', function(){
+                    jQuery('.seo-audit .tabset').fadeIn('slow', function(){
+                      jQuery('.seo-audit .scoreAudit').fadeIn('slow');
+                    });
+                  });
+              }
+
+            }
             
 
           }).catch(err => console.log(err))
+        }
+
+        function showMessage(value){
+            jQuery('.seo-audit .alert').text(value);
+            jQuery('.seo-audit .alert').fadeIn('fast');
+            setTimeout(function() { 
+              jQuery('.seo-audit .alert').fadeOut('fast'); 
+            }, 5000);
+
         }
 
         jQuery(".sendQuery").on("click", function(e){
@@ -64,15 +100,15 @@ jQuery( document ).ready(function() {
           let website = jQuery("#link_seo");
           
           if(email.val() === '') {
-          	alert('Please entrer your email')
+          	showMessage('Please entrer your email')
           } else if(!email.val().includes("@") || !email.val().includes(".")) {
-          	alert('email is invalid')
+          	showMessage('Email is invalid')
           }else if(website.val() === '') {
-          	alert('Please enter your website')
+          	showMessage('Please enter your website')
           }else if(!website.val().includes(".")) {
-          	alert('website is invalid')
+          	showMessage('Website is invalid')
           } else if(!website.val().includes("www")){
-          	alert('website does not have the www')
+          	showMessage('Website does not have the www')
           } else {
               jQuery('.seo-audit form').fadeOut('slow', function(){
                 jQuery('.message').fadeIn('slow');

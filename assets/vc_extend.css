@@ -28,7 +28,7 @@
 
 
 .seo-audit input[type="text"]{
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   border: 1px solid #cccccc;
   background-color: white;
 }
@@ -585,4 +585,13 @@
  .card {
  	height: 600px;
  }
+}
+
+.seo-audit .alert{
+  color: #ff4f58;
+  width: 100%;
+  font-size: 13px;
+  margin: 10px 0;
+  text-align: left;
+  display: none;
 }

@@ -90,6 +90,9 @@ class SEOAuditClass {
         </div>
 
         <form>
+          <div class="alert">
+            Message
+          </div>
           <input type="email" id="email_seo" name="email_seo" placeholder="your@email.com" required />
           <input type="text" id="link_seo" name="link_seo" placeholder="www.yourwebsite.com" required />
           <a href="#" class="sendQuery">
