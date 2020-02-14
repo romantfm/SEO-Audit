@@ -15,18 +15,18 @@ if (!defined('ABSPATH')) die('-1');
 class SEOAuditClass {
     function __construct() {
         // We safely integrate with VC with this hook
-        add_action( 'init', array( $this, 'integrateWithVisualComposer' ) );
+        add_action( 'init', array( $this, 'integrateWithVC' ) );
  
         // Use this when creating a shortcode addon
-        add_shortcode( 'bartagseo', array( $this, 'renderMyBartagseoVC' ) );
+        add_shortcode( 'bartagVC', array( $this, 'renderMyBartagVC' ) );
 
         // Register CSS and JS
-        add_action( 'wp_footer', array( $this, 'loadCssAndJs' ) );
+        add_action( 'wp_footer', array( $this, 'loadCSSAndJS' ) );
 
-        add_action( 'wp_footer', array( $this, 'showAll' ) );
+        add_action( 'wp_footer', array( $this, 'showAllInfo' ) );
     }
  
-    public function integrateWithVisualComposer() {
+    public function integrateWithVC() {
         // Check if WPBakery Page Builder is installed
         if ( ! defined( 'WPB_VC_VERSION' ) ) {
             // Display notice that Extend WPBakery Page Builder is required
@@ -37,7 +37,7 @@ class SEOAuditClass {
         vc_map( array(
             "name" => __("SEO Audit", 'vc_extend'),
             "description" => __("", 'vc_extend'),
-            "base" => "bartagseo",
+            "base" => "bartagVC",
             "class" => "",
             "controls" => "full",
             "icon" => plugins_url('assets/asterisk_yellow.png', __FILE__), // or css class name which you can reffer in your css file later. Example: "vc_extend_my_class"
@@ -62,7 +62,7 @@ class SEOAuditClass {
     /*
     Shortcode logic how it should be rendered
     */
-    public function renderMyBartagseoVC( $atts ) {
+    public function renderMyBartagVC( $atts ) {
       extract( shortcode_atts( array(
         'url_seo' => 'https://tfm-web-api.herokuapp.com/graphql',
       ), $atts ) );
@@ -149,14 +149,14 @@ class SEOAuditClass {
     /*
     Load plugin css and javascript files which you may need on front end of your site
     */
-    public function loadCssAndJs() {
+    public function loadCSSAndJS() {
       wp_register_style( 'seo_audit_style', plugins_url('assets/vc_extend.css', __FILE__) );
       wp_enqueue_style( 'seo_audit_style' );    
 
       wp_enqueue_script( 'seo_audit_js', plugins_url('assets/vc_extend.js', __FILE__), array('jquery') );
     }
 
-    public function showAll($atts) {
+    public function showAllInfo($atts) {
       extract( shortcode_atts( array(
         'url_seo' => 'https://tfm-web-api.herokuapp.com/graphql',
       ), $atts ) );
