@@ -77,27 +77,32 @@ class SEOAuditClass {
 
       ?>
 
-      <div class="seo-audit">
+<div class="wpb_column vc_column_container vc_col-sm-4">
+	<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+        <div class="seo-audit card">
 
       <h2>Online SEO Audit</h2>
+      <p>You can check your Landing page SEO without leaving this page!</p>
 
         <div class="scoreAudit">
           91
         </div>
 
-        <form action="#">
-          <input type="email" id="email_seo" name="email_seo" required="" placeholder="your@email.com">
-          <input type="url" id="link_seo" name="link_seo" placeholder="wwww.yourdomain.com">
-          <!--a href="#" class="sendQuery">Send</a-->
-          <input type="submit" value="Send">
+        <form>
+          <input type="email" id="email_seo" name="email_seo" placeholder="your@email.com" required />
+          <input type="text" id="link_seo" name="link_seo" placeholder="www.yourwebsite.com" required />
+          <a href="#" class="sendQuery">
+              <div class='button-send'>
+                CHECK MY WEBSITE
+              </div>
+          </a>
         </form>
 
         <div class="message">
-          <!--div class="spinner-box">
-            <div class="circle-border">
-              <div class="circle-core"></div>
-            </div>
-          </div-->
+            <?php 
+            echo do_shortcode( '[bodymovin anim_id="5245" loop="true" width="200px" height="200px" align="center"]' );
+            ?>
           <h3>Calculating your SEO score... </h3>
           <p>Tip: Did you know that we use Google's lighthouse to assess your webpage</p>
 
@@ -128,10 +133,12 @@ class SEOAuditClass {
 
       </div>
 
+		</div>
+	</div>
+</div>
       <script type="text/javascript">
         var the_url = "<?php echo $the_url; ?>";
       </script>
-
       <?php
 
     }
