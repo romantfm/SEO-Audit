@@ -46,7 +46,7 @@ jQuery( document ).ready(function() {
                   setTimeout(() => {
                     jQuery('.seo-audit .message').fadeOut('slow', function(){
                       jQuery('.seo-audit form').fadeIn('slow', function(){
-                        showMessage('No results.');
+                        showMessage('Aw, snap! There was an error, try again later.');
                       });
                     });
                   }, 1000);
